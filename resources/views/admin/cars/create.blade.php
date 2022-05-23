@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    @if ( $errors->any() )
+    <ul class="alert alert-danger">
+        @foreach ( $errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+    @endif
     <h1>
         creazione nuova auto
     </h1>

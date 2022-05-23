@@ -1,17 +1,24 @@
-      @extends('layouts.app')
-      
-      @section('content')
-      <h1>
-        creazione nuova auto
-      </h1>
-      <div class="container mt-5">
+@extends('layouts.app')
+
+@section('content')
+    @if ( $errors->any() )
+        <ul class="alert alert-danger">
+            @foreach ( $errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+    <h1>
+    Modidica auto
+    </h1>
+    <div class="container mt-5">
         <form class="row g-3" action="{{route("admin.cars.update", $car)}}" method="POST">
-          @method("PUT")
-          @csrf
+            @method("PUT")
+            @csrf
         <div class="col-4">
             <label for="numero_telaio">Numero di telaio</label>
             <input type="text" name="numero_telaio" id="numero_telaio" value="{{$car->numero_telaio}}">
-          </div>
+            </div>
         <div class="col-4">
             <label for="model">Modello</label>
             <input type="text" name="model" id="model" value="{{$car->model}}">    

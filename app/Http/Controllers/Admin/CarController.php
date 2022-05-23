@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Car;
+use App\Marca;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,10 @@ class CarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        // $marca = Marca::findOrFail($cars->marcas_id);
         $cars = Car::all();
-        return view("admin.cars.index", compact("cars"));
+        return view("admin.cars.index", ["cars" => $cars]);
     }
 
     /**
@@ -37,6 +39,15 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'numero_telaio' => 'unique:cars,numero_telaio,id|required|max:20',
+            'model' => 'required|max:20',
+            'porte' => 'required|max:5|numeric',
+            'data_immatricolazione' => 'required',
+            'marca' => 'required|max:20',
+            'alimentazione' => 'required',
+            'prezzo' => 'required|numeric',
+        ]);
         $data = $request->all();
         $car = new Car();
             $car->numero_telaio= $data["numero_telaio"];
@@ -59,8 +70,10 @@ class CarController extends Controller
      */
     public function show($id)
     {
+        // $car=Car::findOrFail($car)-> marca;
+        // $marca = Marca::findOrFail($cars->marcas_id);
         $car= Car::findOrFail($id);
-        return view("admin.cars.show", compact("car"));
+        return view("admin.cars.show",[ "car"=> $car]);
     }
 
     /**
@@ -83,6 +96,15 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
+        $request->validate([
+            'numero_telaio' => 'unique:cars,numero_telaio,id|required|max:20',
+            'model' => 'required|max:20',
+            'porte' => 'required|max:5|numeric',
+            'data_immatricolazione' => 'required',
+            'marca' => 'required|max:20',
+            'alimentazione' => 'required',
+            'prezzo' => 'required|numeric',
+        ]);
         $data = $request->all();
         $car->numero_telaio= $data["numero_telaio"];
         $car->model=$data["model"]; 

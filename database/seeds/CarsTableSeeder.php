@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Car;
+use App\Marca;
 use Faker\Generator as Faker;
 
 
@@ -17,11 +18,12 @@ class CarsTableSeeder extends Seeder
 
         for($i= 0; $i < 10; $i++){
             $car = new Car();
+            $car->marcas_id=$faker->numberBetween(1,Marca::count());
             $car->numero_telaio= $faker->bothify('?????-#####');
             $car->model=$faker->word(20,true); 
             $car->porte=$faker->numberBetween(2, 5);
             $car->data_immatricolazione=$faker->date("Y-m-d");
-            $car->marca=$faker->randomElement(['renault','citroen','ford','maserati','hummer']);
+            // $car->marca=$faker->randomElement(['renault','citroen','ford','maserati','hummer']);
             $car->alimentazione=$faker->randomElement(['Benzina','Diesel','GPL','Metano','Vino']);
             $car->prezzo=$faker->randomFloat(2,8000, 100000);
             $car->save();

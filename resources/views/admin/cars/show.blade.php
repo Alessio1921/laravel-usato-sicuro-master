@@ -1,3 +1,4 @@
+{{-- @dd($car) --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
         <a href="{{route("home")}}">Home page</a>
         <a href="{{route("admin.cars.index")}}">Lista Completa</a>
         <h3>
-            {{$car->model}} - {{$car->marca}}
+            {{$car->model}} - {{$car->marca->name}}
         </h3>
         <form action="{{route("admin.cars.destroy", $car)}}" method="POST">
             @csrf

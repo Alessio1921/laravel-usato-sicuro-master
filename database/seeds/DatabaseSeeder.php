@@ -11,6 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CarsTableSeeder::class);
+        $this->call([ add_marca_table_seeder::class, CarsTableSeeder::class]);
     }
 }
