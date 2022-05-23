@@ -15,10 +15,11 @@ class CreateCarsTable extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('marcas_id');
-            $table->foreign('marcas_id')
-                    ->references('id')
-                    ->on('marcas');	
+            $table->foreignId('marca_id')->constrained();
+            // $table->unsignedBigInteger('marcas_id');
+            // $table->foreign('marcas_id')
+            //         ->references('id')
+            //         ->on('marcas');	
             $table->string("numero_telaio", 20)->unique();
             $table->string("model", 20); 
             $table->tinyInteger("porte"); 

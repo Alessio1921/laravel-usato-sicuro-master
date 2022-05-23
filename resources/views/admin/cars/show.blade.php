@@ -1,4 +1,4 @@
-@dd($car->marca())
+{{-- @dd($car->marca->name) --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

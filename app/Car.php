@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Car extends Model
 {
+
     public function marca(){
-        return $this->hasMany("App\Marca");
+        return $this->belongsTo('App\Marca');
     }
 }

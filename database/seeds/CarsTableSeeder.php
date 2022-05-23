@@ -18,7 +18,7 @@ class CarsTableSeeder extends Seeder
 
         for($i= 0; $i < 10; $i++){
             $car = new Car();
-            $car->marcas_id=$faker->numberBetween(1,Marca::count());
+            $car->marca_id=$faker->numberBetween(1,Marca::count());
             $car->numero_telaio= $faker->bothify('?????-#####');
             $car->model=$faker->word(20,true); 
             $car->porte=$faker->numberBetween(2, 5);
